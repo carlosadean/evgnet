@@ -11,11 +11,18 @@ class Igreja(models.Model):
 	sede_bloco = models.BooleanField(default=False)
 	#responsavel_evg = models.ForeignKey(Evangelista, blank=True, null=True)
 
+
+	def __unicode__(self):
+		return self.nome
+
 	def __str__(self):
 		return self.nome.encode('utf-8')
 
 class Projeto(models.Model):
  	nome = models.CharField(max_length=50)
+
+	def __unicode__(self):
+		return self.nome
 
  	def __str__(self):
 		return self.nome.encode('utf-8')
@@ -23,6 +30,9 @@ class Projeto(models.Model):
 
 class Funcao(models.Model):
  	nome = models.CharField(max_length=50)
+
+	def __unicode__(self):
+		return self.nome
 
  	def __str__(self):
 		return self.nome.encode('utf-8')
@@ -53,6 +63,9 @@ class Evangelista(models.Model):
     
  #    estado_civil = models.CharField(max_length=1, choices=ESTADO_CIVIL)
 
+	def __unicode__(self):
+		return self.nome
+		
 	def __str__(self):
 		return self.nome.encode('utf-8')
 	

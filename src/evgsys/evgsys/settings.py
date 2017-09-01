@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf8 -*-
 """
 Django settings for evgsys project.
 
@@ -9,11 +9,6 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
-
-Requisitos:
-$ 
-$ sudo yum install zlib-devel
-
 """
 
 import os
@@ -26,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5i!c2bvy6h)0&wxb3@qft6bbt!w8x-z!736hjgzgjvui63#c0s'
+SECRET_KEY = '%-pv0u8ij6^amav74_xql!$h2me*4=fz100zu2t-g$f09@m351'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,13 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'cadastro',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cadastro',
 ]
 
 MIDDLEWARE = [
@@ -127,13 +122,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# Images directory
-MEDIA_URL = '/fotos_perfil/'
-IMAGE_ROOT = '/home/carlosadean/django/evg/cadastro/imagens/'
+MEDIA_URL = '/imagens/'
+
+IMAGE_ROOT = '/home/carlosadean/projetos/evgnet/cadastro/imagens/'
