@@ -10,7 +10,9 @@
 
 {% for evg in lista_evangelistas %}
 
-{{ evg.nome }} <br/>
+{% url "cadastro:detail" id=evg.id %}'>{{ evg.nome }}</a><br/>
+
+<a href='{{ evg.get_absolute_url }}'>{{ evg.nome }}</a><br/>
 {{ evg.igreja }} <br/>
 {{ evg.funcao }} <br/><br/>
 

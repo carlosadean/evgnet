@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 class Igreja(models.Model):
@@ -51,6 +52,17 @@ class Evangelista(models.Model):
 	data_batismo_no_espirito_santo = models.DateField(null=True)
 	obreiro = models.BooleanField(default=False)
 	inativo = models.BooleanField(default=False)
+
+	def __unicode__(self):
+		return self.nome
+
+	def __str__(self):
+		return self.nome.encode('utf-8')
+
+	def get_absolute_url(self):
+		return reverse("cadastro:detail", kwargs={"id": self.id})
+		#return "/cadastro/%s/" % (self.id)
+
 	# GENDER_CHOICES = (
  #        ('M', 'Masculino'),
  #        ('F', 'Feminino'),
@@ -66,11 +78,4 @@ class Evangelista(models.Model):
  #    )
     
  #    estado_civil = models.CharField(max_length=1, choices=ESTADO_CIVIL)
-
-	def __unicode__(self):
-		return self.nome
-
-	def __str__(self):
-		return self.nome.encode('utf-8')
-	
 

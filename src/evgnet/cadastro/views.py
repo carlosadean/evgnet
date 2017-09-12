@@ -4,10 +4,19 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 # Create your views here.
+from .forms import EvangelistaForm
 from .models import Evangelista
 
 def cadastro_create(request):
-	return HttpResponse("<h1>Create Cadastro</h1>")
+	form = EvangelistaForm()
+	if request.method == "POST":
+		print request.POST
+	context = {
+		"form": form,
+	}
+
+	return render(request, "post_form.html", context)
+	#return HttpResponse("<h1>Create Cadastro</h1>")
 
 
 def cadastro_detail(request, id):

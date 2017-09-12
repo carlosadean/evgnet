@@ -12,7 +12,7 @@ from .views import (
 urlpatterns = [
 	url(r'^$', cadastro_list),
 	url(r'^create/$', cadastro_create),
-	url(r'^(?P<id>\d+)/$', cadastro_detail),
+	url(r'^(?P<id>\d+)/$', cadastro_detail, name="detail"),
 	url(r'^update/$', cadastro_update),
 	url(r'^delete/$', cadastro_delete),
 	url(r'^imagens/$', cadastro_delete),

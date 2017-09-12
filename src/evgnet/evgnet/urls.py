@@ -21,5 +21,5 @@ from cadastro import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^cadastro/', include("cadastro.urls")),
+    url(r'^cadastro/', include("cadastro.urls", namespace='cadastro')),
 ]
