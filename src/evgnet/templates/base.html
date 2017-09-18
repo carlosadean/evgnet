@@ -6,7 +6,12 @@
 	</head>
 
 <body>
-	<p>{{ title }} esta funcionando!</p>
+
+<div class='container'>
+
+{% block content %} 
+
+		<p>{{ title }} esta funcionando!</p>
 
 {% for evg in lista_evangelistas %}
 
@@ -17,6 +22,12 @@
 {{ evg.funcao }} <br/><br/>
 
 {% endfor %}
+
+{% endblock content %} 
+
+
+</div>
+
 
 
 </body>

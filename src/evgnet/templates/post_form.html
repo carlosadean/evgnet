@@ -1,20 +1,12 @@
-<!--DOCTYPE html -->
-<html>
-<head>
-	<head>
-		<title>Template is working!</title>
-	</head>
+{% extends "base.html" %}
 
-<body>
-	<h1>Cadastro</h1>
+{% block content %} 
+
+<h1>Cadastro</h1>
 
 <form method='POST' action='' >{% csrf_token %}
-
 {{ form.as_p }}
-<input type='submit' value='Novo Evangelista' />
-
+<input type='submit' value='Salvar' />
 </form>
 
-</body>
-
-</html>
+{% endblock content %} 

@@ -1,29 +1,30 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from .forms import EvangelistaForm
 from .models import Evangelista
 
 def cadastro_create(request):
-	form = EvangelistaForm()
-	if request.method == "POST":
-		print request.POST
+	form = EvangelistaForm(request.POST or None) #esse parametro habilita a validacao no form
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+		#message success
+		messages.success(request, "Cadastro realizado com sucesso!")
+		return HttpResponseRedirect(instance.get_absolute_url())
 	context = {
 		"form": form,
 	}
-
 	return render(request, "post_form.html", context)
-	#return HttpResponse("<h1>Create Cadastro</h1>")
-
 
 def cadastro_detail(request, id):
-	#instance = Evangelista.objects.get(id=8)
 	instance = get_object_or_404(Evangelista, id=id)
 	context = {
-		"instance": instance.nome,
+		"instance": instance,
 		"title": "Detail"
 	}
 	return render(request, "detail.html", context)
@@ -36,22 +37,27 @@ def cadastro_list(request):
 		"title": "List"
 	}
 
-	# if request.user.is_authenticated():
-	# 	context = {
-	# 		"title": "My user List"
-	# 	}
-	# else:
-	# 	context = {
-	# 		"title": "List"
-	# 	}
+	return render(request, "base.html", context)
 
-	return render(request, "index.html", context)
-	# return HttpResponse("<h1>List Cadastro</h1>")
+def cadastro_update(request, id):
+	instance = get_object_or_404(Evangelista, id=id)
+	form = EvangelistaForm(request.POST or None, instance=instance) #esse parametro habilita a validacao no form
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+		#message success
+		messages.success(request, "Cadastro atualizado com sucesso!")
+		return HttpResponseRedirect(instance.get_absolute_url())
+	context = {
+		"nome": instance.nome,
+		"instance": instance,
+		"form": form,
+	}
+	return render(request, "post_form.html", context)
 
-
-def cadastro_update(request):
-	return HttpResponse("<h1>Update Cadastro</h1>")
-
-
-def cadastro_delete(request):
-	return HttpResponse("<h1>Delete Cadastro</h1>")
+def cadastro_delete(request, id=None):
+	instance = get_object_or_404(Evangelista, id=id)
+	instance.delete()
+	messages.success(request, "Cadastro removido com sucesso!")
+	return redirect("cadastro:lista")
+	#return HttpResponse("<h1>Delete Cadastro</h1>")

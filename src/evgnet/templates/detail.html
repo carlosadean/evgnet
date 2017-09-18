@@ -1,23 +1,18 @@
-<!--DOCTYPE html -->
-<html>
-<head>
-	<head>
-		<title>Template is working!</title>
-	</head>
+{% extends "base.html" %}
 
-<body>
-	<p>{{ title }} esta funcionando!</p>
+{% block content %} 
 
-<p>{{ instance }}</p>
-<!-- {% for evg in lista_evangelistas %}
-
-{{ evg.nome }} <br/>
-{{ evg.igreja }} <br/>
-{{ evg.funcao }} <br/><br/>
-
-{% endfor %} -->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 
-</body>
+{{ instance.nome }} <br/>
+{{ instance.igreja }} <br/>
+{{ instance.funcao }} <br/><br/>
 
-</html>
+{% endblock content %} 
