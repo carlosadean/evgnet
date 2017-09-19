@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^cadastro/', include("cadastro.urls", namespace='cadastro')),
 ]
 
+# video 25
 if settings.DEBUG:
 	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
