@@ -47,8 +47,7 @@ class Evangelista(models.Model):
 	nome = models.CharField(max_length=200)
 	data_nascimento = models.DateField()
 	data_entrada_evg = models.DateField()
-	foto_perfil = models.ImageField(upload_to='imagens/foto_perfil/',
-							blank=True)
+	foto_perfil = models.FileField(null=True, blank=True)
 	data_batismo_no_espirito_santo = models.DateField(null=True)
 	obreiro = models.BooleanField(default=False)
 	inativo = models.BooleanField(default=False)
@@ -62,6 +61,9 @@ class Evangelista(models.Model):
 	def get_absolute_url(self):
 		return reverse("cadastro:detail", kwargs={"id": self.id})
 		#return "/cadastro/%s/" % (self.id)
+
+	def get_edit_url(self):
+		return "/cadastro/%s/edit" % (self.id)
 
 	# GENDER_CHOICES = (
  #        ('M', 'Masculino'),

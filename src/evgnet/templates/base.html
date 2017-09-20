@@ -5,6 +5,11 @@
 	<head>
 		<title>Template is working!</title>
 	</head>
+	<!-- Última versão CSS compilada e minificada -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Tema opcional -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	<link rel="stylesheet" href='{% static "css/base.css" %}' />
 
 <body>
@@ -13,25 +18,44 @@
 
 {% block content %} 
 
-		<p>{{ title }} esta funcionando!</p>
-
 {% for evg in lista_evangelistas %}
 
-{% url "cadastro:detail" id=evg.id %}'>{{ evg.nome }}</a><br/>
-
-<a href='{{ evg.get_absolute_url }}'>{{ evg.nome }}</a><br/>
-{{ evg.igreja }} <br/>
-{{ evg.funcao }} <br/><br/>
-
-{% endfor %}
-
-{% endblock content %} 
-
-
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail"><!-- 
+      <img src="..." alt="..."> -->
+      <div class="caption">
+        <h3><!-- <a href='{{ evg.get_absolute_url }}'> -->{{ evg.nome }}<br /><!-- </a>  --><small>evangelista há {{ evg.data_entrada_evg|timesince }}</small></h3>
+        <p>...</p>
+        <p><a href='{% url "cadastro:detail" id=evg.id %}' class="btn btn-info" role="button">Ficha completa</a> <a href="{{ evg.get_edit_url }}" class="btn btn-danger" role="button">Editar</a></p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<img src='{% static "img/beach.jpg" %}' />
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if lista_evangelistas.has_previous %}
+            <a href="?page={{ lista_evangelistas.previous_page_number }}">previous</a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ lista_evangelistas.number }} of {{ lista_evangelistas.paginator.num_pages }}.
+        </span>
+
+        {% if lista_evangelistas.has_next %}
+            <a href="?page={{ lista_evangelistas.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %} 
+</div>
+<!-- Última versão JavaScript compilada e minificada -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
-
 </html>
+
+
+

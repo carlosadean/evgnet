@@ -14,5 +14,7 @@
 <h1>{{ instance.nome }}</h1> <br/>
 {{ instance.igreja }} <br/>
 {{ instance.funcao }} <br/><br/>
+<!-- <a href='{{ instance.get_edit_url }}'>editar</a><br/>  -->
+<a href="{{ instance.get_edit_url }}" class="btn btn-danger" role="button">Editar</a></p>
 
 {% endblock content %} 
