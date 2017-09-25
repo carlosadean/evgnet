@@ -15,6 +15,11 @@
 {{ instance.igreja }} <br/>
 {{ instance.funcao }} <br/><br/>
 <!-- <a href='{{ instance.get_edit_url }}'>editar</a><br/>  -->
+
+{% if instance.foto_perfil %}
+<img src='{{ instance.foto_perfil.url }}' class='img-responsive' />
+{% endif %}
+
 <a href="{{ instance.get_edit_url }}" class="btn btn-danger" role="button">Editar</a></p>
 
 {% endblock content %} 

@@ -14,7 +14,7 @@ class EvangelistaForm(forms.ModelForm):
 			"data_entrada_evg",
 			"foto_perfil",
 			"data_batismo_no_espirito_santo",
-			"foto_perfil",
+			"foto_perfil",	
 			"obreiro",
 			"inativo"
 		]

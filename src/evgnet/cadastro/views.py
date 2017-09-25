@@ -32,7 +32,7 @@ def cadastro_detail(request, id):
 
 def cadastro_list(request):
     queryset_list = Evangelista.objects.all()
-    paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
+    paginator = Paginator(queryset_list, 25) # Show 25 contacts per page
 
     page = request.GET.get('page')
     try:

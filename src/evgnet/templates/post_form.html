@@ -3,9 +3,9 @@
 {% block content %} 
 
 <div class='col-sm-10'>
-<h1>Cadastro</h1>
+<!-- <h1>Ficha completa</h1> -->
 
-<form method='POST' action='' enctype='multpart/form-data'>{% csrf_token %}
+<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
 {{ form.as_p }}
 <input type='submit' class='btn btn-primary' value='Salvar' />
 

@@ -39,6 +39,9 @@ class Funcao(models.Model):
  	def __str__(self):
 		return self.nome.encode('utf-8')
 
+def upload_location(instance, filename):
+	filebase, extension = filename.split(".")
+	return "%s/%s.%s" %(instance.id, instance.id, extension)
 
 class Evangelista(models.Model):
 	igreja = models.ForeignKey(Igreja)
@@ -47,7 +50,13 @@ class Evangelista(models.Model):
 	nome = models.CharField(max_length=200)
 	data_nascimento = models.DateField()
 	data_entrada_evg = models.DateField()
-	foto_perfil = models.FileField(null=True, blank=True)
+	foto_perfil = models.ImageField(upload_to=upload_location,
+			null=True, 
+			blank=True, 
+			width_field="width_field", 
+			height_field="height_field")
+	height_field = models.IntegerField(default=0)
+	width_field = models.IntegerField(default=0)
 	data_batismo_no_espirito_santo = models.DateField(null=True)
 	obreiro = models.BooleanField(default=False)
 	inativo = models.BooleanField(default=False)
